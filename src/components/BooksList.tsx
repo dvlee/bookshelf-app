@@ -38,12 +38,18 @@ const BooksList: FC<Props> = () => {
 
   return (
     <Stack gap={3}>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="wrap"
+      >
         <Typography variant="h5">My Books</Typography>
 
         <ButtonGroup
           variant="contained"
           aria-label="outlined primary button group"
+          sx={{ order: { xs: 1, sm: 0 } }}
         >
           <Button onClick={() => handleChangeFilter(null)}>ALL</Button>
           {Object.keys(BOOK_STATUSES).map((key) => (
