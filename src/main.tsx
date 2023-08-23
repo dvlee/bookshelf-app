@@ -1,10 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { CssBaseline } from "@mui/material";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import router from "./app/router";
+import { store } from "./app/store";
+import { AuthProvider } from "./contexts/AuthContext";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <AuthProvider>
+      <Provider store={store}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+        <ToastContainer position="top-center" />
+      </Provider>
+    </AuthProvider>
+  </React.StrictMode>
+);

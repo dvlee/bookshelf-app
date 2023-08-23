@@ -1,27 +1,32 @@
-# React + TypeScript + Vite
+# Practical Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend developer
+Est. time spent: 4 hours
+Skills: MUI, React, API integrations and overall proficiency in code structuring
 
-Currently, two official plugins are available:
+# Objective
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You are asked to create a frontend for a bookshelf app.
 
-## Expanding the ESLint configuration
+Core app functionality:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Registering users
+- Adding new books to shelf
+- Editing book status
+- Deleting books from shelf
+- View all books
 
-- Configure the top-level `parserOptions` property like this:
+Here you can find API documentation (https://documenter.getpostman.com/view/13739193/2s83zjri3P)
+Host is: https://no23.lavina.tech
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+# Requirements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Make this app as user-friendly as you can
+- Use React and MUI
+- Use typescript
+- Use templates for styling
+- Follow the rules of clean coding.
+
+# Output
+
+After finishing your work, please publish your app and fill in the form
