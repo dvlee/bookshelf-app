@@ -15,7 +15,7 @@ const AuthTabs: FC<Props> = () => {
 
   return (
     <Container maxWidth="xs">
-      <Stack>
+      <Stack gap={3}>
         <Tabs value={tab} onChange={handleChangeTab} variant="fullWidth">
           <Tab value="login" label="Login" />
           <Tab value="registration" label="Registration" />
