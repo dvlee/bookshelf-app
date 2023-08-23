@@ -76,14 +76,14 @@ const UserMenu: FC<Props> = () => {
           </MenuItem>
         </Link>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <Link to="/logout">
+        <Link to="/logout">
+          <MenuItem onClick={handleClose}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
             Logout
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
       </Menu>
     </>
   );

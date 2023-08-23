@@ -36,8 +36,6 @@ const BooksList: FC<Props> = () => {
     setFilterStatus(status);
   };
 
-  if (!data) return null;
-
   return (
     <Stack gap={3}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -63,6 +61,11 @@ const BooksList: FC<Props> = () => {
       {isLoading && <Typography>Loading...</Typography>}
       {!isLoading && (
         <Grid container spacing={2}>
+          {data?.length === 0 && (
+            <Grid item xs={12}>
+              <Typography>You don't have any books yet</Typography>
+            </Grid>
+          )}
           {filteredBooks.map((book: Book) => (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={book.isbn}>
               <BookCard book={book} added />

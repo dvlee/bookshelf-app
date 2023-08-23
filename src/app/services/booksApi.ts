@@ -26,12 +26,11 @@ export const booksApi = createApi({
           method: "GET",
         }),
       transformResponse: (response: { data: BookContainer[] }) => {
-        const transformedData = response.data.map(
-          ({ book, status }: BookContainer) => ({
+        const transformedData =
+          response.data?.map(({ book, status }: BookContainer) => ({
             ...book,
             status,
-          })
-        );
+          })) || [];
         return transformedData;
       },
       providesTags: ["Books"],
