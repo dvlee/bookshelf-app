@@ -19,11 +19,11 @@ const LoginForm: FC = () => {
   const { setUser } = useAuth();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     login(data)
       .unwrap()
       .then((res) => {
         setUser(res.data);
+        sessionStorage.setItem("auth", JSON.stringify(res.data));
         toast.success("Login success");
       })
       .catch((error) => {

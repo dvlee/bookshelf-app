@@ -1,34 +1,40 @@
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
 import { FC, useState } from "react";
+import { toast } from "react-toastify";
 import { BOOK_STATUSES } from "../app/constants";
 import { useEditBookStatusMutation } from "../app/services/booksApi";
-import { BookStatus } from "../types";
+import { Book, BookStatus } from "../types";
 
 interface Props {
-  id: number;
-  status: BookStatus;
+  book: Required<Book>;
 }
 
-const BookStatusButton: FC<Props> = ({ id, status }) => {
+const BookStatusButton: FC<Props> = ({ book }) => {
+  const { id, status } = book;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [changeStatus] = useEditBookStatusMutation();
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const [changeStatus] = useEditBookStatusMutation();
 
   const handleChangeStatus = (status: BookStatus) => {
     changeStatus({ id, status })
       .unwrap()
       .then((res) => {
-        console.log("res", res);
+        toast.success(`Status changed to ${BOOK_STATUSES[status].label}`);
         handleClose();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.data.message);
+      });
   };
 
   return (
@@ -77,6 +83,7 @@ const BookStatusButton: FC<Props> = ({ id, status }) => {
             onClick={() => handleChangeStatus(+index)}
             sx={{ minHeight: 32, py: 0, justifyContent: "right" }}
             disabled={status === +index}
+            key={index}
           >
             {BOOK_STATUSES[+index].label}
           </MenuItem>

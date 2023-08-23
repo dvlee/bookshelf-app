@@ -18,12 +18,6 @@ export const queryWithHeaders = (args: QueryArgs): string | FetchArgs => {
 
   const { url, method = "GET", body = "" } = args;
 
-  // TODO: delete when done
-  console.log(
-    "method + url + body + secret",
-    method + url + (body && JSON.stringify(body)) + secret
-  );
-
   return {
     ...args,
     headers: {

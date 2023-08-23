@@ -20,6 +20,7 @@ export type Book = {
   published: number;
   title: string;
   id: number;
+  status: BookStatus;
 };
 
 export type BookStatuses = Record<

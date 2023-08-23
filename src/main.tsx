@@ -15,7 +15,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Provider store={store}>
         <CssBaseline />
         <RouterProvider router={router} />
-        <ToastContainer position="top-center" />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+        />
       </Provider>
     </AuthProvider>
   </React.StrictMode>

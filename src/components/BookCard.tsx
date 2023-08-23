@@ -6,22 +6,22 @@ import {
   useDeleteBookMutation,
 } from "../app/services/booksApi";
 import BookStatusButton from "../features/BookStatusButton";
-import { Book, BookStatus } from "../types";
+import { Book } from "../types";
 
 interface Props {
   book: Book;
-  status?: BookStatus;
+  added?: boolean;
 }
 
-const BookCard: FC<Props> = ({ book, status }) => {
+const BookCard: FC<Props> = ({ book, added }) => {
   const [add, { isLoading }] = useAddBookMutation();
   const [remove, { isLoading: isRemoving }] = useDeleteBookMutation();
 
   const handleAdd = () => {
     add({ isbn: book.isbn })
       .unwrap()
-      .then((res) => {
-        console.log("res", res);
+      .then(() => {
+        toast.success(`Book "${book.title}" added to your list`);
       })
       .catch((error) => {
         console.error(error);
@@ -32,17 +32,18 @@ const BookCard: FC<Props> = ({ book, status }) => {
   const handleDelete = () => {
     remove(book.id)
       .unwrap()
-      .then((res) => {
-        console.log("res", res);
+      .then(() => {
+        toast.success(`Book "${book.title}" removed from your list`);
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.data.message);
+      });
   };
 
   return (
-    <Stack position="relative">
-      {status !== undefined && (
-        <BookStatusButton id={book.id} status={status} />
-      )}
+    <Stack position="relative" bgcolor="grey.200">
+      {book.status !== undefined && <BookStatusButton book={book} />}
       <Box
         component="img"
         src={book.cover}
@@ -61,6 +62,7 @@ const BookCard: FC<Props> = ({ book, status }) => {
           width: 1,
           height: 1,
           p: 2,
+          pt: 3,
           opacity: 0,
           transition: "opacity 0.3s",
           lineHeight: 1,
@@ -74,7 +76,7 @@ const BookCard: FC<Props> = ({ book, status }) => {
         <Typography>Publish year: {book.published}</Typography>
         <Typography>ISBN: {book.isbn}</Typography>
 
-        {status === undefined && (
+        {book.status === undefined && !added && (
           <Button
             variant="contained"
             size="small"
@@ -85,7 +87,7 @@ const BookCard: FC<Props> = ({ book, status }) => {
             Add
           </Button>
         )}
-        {status !== undefined && (
+        {book.status !== undefined && added && (
           <Button
             variant="contained"
             color="error"

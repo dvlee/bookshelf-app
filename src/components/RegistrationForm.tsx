@@ -23,7 +23,6 @@ const RegistrationForm: FC = () => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data, errors);
     registerUser(data)
       .unwrap()
       .then((res) => {
