@@ -27,7 +27,7 @@ const BookStatusButton: FC<Props> = ({ book }) => {
   const handleChangeStatus = (status: BookStatus) => {
     changeStatus({ id, status })
       .unwrap()
-      .then((res) => {
+      .then(() => {
         toast.success(`Status changed to ${BOOK_STATUSES[status].label}`);
         handleClose();
       })
